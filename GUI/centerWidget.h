@@ -14,7 +14,8 @@
 #include <stdint.h>
 
 #include "objekts/state.h"
-#include "objekts/PenState.h"
+#include "objekts/pen.h"
+#include "objekts/drawTools.h"
 #include <memory>
 
 class Widget:public QWidget{
@@ -37,22 +38,18 @@ public:
 
     QPointF tmpPoint;
 
-    std::shared_ptr<State> symmetryDraw;
-
-    std::vector<std::shared_ptr<State>> drawVector;
+    std::shared_ptr<DrawTools> drawTool;
 
 
-    Widget(QMainWindow *parent,int width,int height):QWidget(parent),parent(parent), width(width-150),height(height-150){
-      setting();
+    Widget(QMainWindow *parent,std::shared_ptr<DrawTools> & drawTool
+                   ,int width,int height
+                   ):QWidget(parent),parent(parent), width(width-150),height(height-150){
       center.setX(width/2);
       center.setY(height/2);
+      this->drawTool = drawTool;
       gui();
     };
 
-    void setting(){
-      symmetryDraw.reset(new SymmetryDraw());
-      drawVector.push_back(symmetryDraw);
-    }
 
     void gui(){
       this->setStyleSheet("QWidget { background-color : white}");
@@ -69,23 +66,20 @@ public:
     void mouseMoveEvent(QMouseEvent *e){
       int x = e->x();
       int y = e->y();
-      symmetryDraw->add(QPointF(x,y),tmpPoint);
+      this->drawTool->add(QPointF(x, y), tmpPoint);
       tmpPoint.setX(x);
       tmpPoint.setY(y);
       this->update();
     }
 
     void mouseReleaseEvent(QMouseEvent *event){
-
+      this->drawTool->newstep();
     }
 
 
     void paintEvent(QPaintEvent *e){
       QPainter painter(this) ;
-      for(auto &value : drawVector){
-        value->draw(painter);
-
-      }
+      this->drawTool->draw(painter);
       /*
       float linienbreite = 2;
 
@@ -101,23 +95,7 @@ public:
        */
     }
 
-    void keyPressEvent(QKeyEvent *e) override{
-      std::cout << e->key();
-      if(e->key() == Qt::Key_Control){ //
 
-      }
-      if(e->key() == Qt::Key_Tab){ // Tab to delete all
-        symmetryDraw->pop();
-        std::cout << "32";
-        this->update();
-      }
-    }
-
-    void mouseDoubleClickEvent( QMouseEvent * e ){
-      symmetryDraw->pop();
-
-      this->update();
-    }
 
 };
 

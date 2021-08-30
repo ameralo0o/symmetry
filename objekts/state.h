@@ -13,8 +13,6 @@ public:
     virtual void draw(QPainter& painter) = 0;
     virtual void add(QPointF pointA, QPointF pointB)= 0;
     virtual void clear()= 0;
-    virtual void pop()= 0;
-    virtual void newstep()= 0;
 
 };
 #endif //SYMMETRY_STATE_H

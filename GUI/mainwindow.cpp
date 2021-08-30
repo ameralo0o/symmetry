@@ -21,3 +21,10 @@ int mainWindow::spawn(int argc , char * argv[]){
   mainWindow f;
   return app.exec();
 }
+
+void mainWindow::keyPressEvent(QKeyEvent *e) {
+  this->drawTool->pop();
+  this->update();
+}
+
+
