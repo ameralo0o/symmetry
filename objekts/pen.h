@@ -11,11 +11,12 @@
 class Pen : public State{
 private:
   std::vector< std::tuple<QPointF, QPointF> >  vector;
+  QPointF tmp_point = QPointF(-1,-1);
 
 public:
     Pen();
     virtual void draw(QPainter& painter) override;
-    virtual void add(QPointF pointA, QPointF pointB) override;
+    virtual void add(QPointF point) override;
     virtual void clear()override;
 
 };

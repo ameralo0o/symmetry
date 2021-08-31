@@ -11,8 +11,7 @@
 class State{
 public:
     virtual void draw(QPainter& painter) = 0;
-    virtual void add(QPointF pointA, QPointF pointB)= 0;
+    virtual void add(QPointF point)= 0;
     virtual void clear()= 0;
-
 };
 #endif //SYMMETRY_STATE_H

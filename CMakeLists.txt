@@ -12,5 +12,5 @@ set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTOUIC ON)
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
 
-add_executable(run main.cpp GUI/mainwindow.cpp GUI/mainwindow.h rotation.cpp rotation.h GUI/centerWidget.h objekts/pen.cpp objekts/pen.h objekts/state.h GUI/centerWidget.cpp objekts/drawTools.h objekts/drawTools.cpp)
+add_executable(run main.cpp GUI/mainwindow.cpp GUI/mainwindow.h rotation.cpp rotation.h GUI/centerWidget.h objekts/pen.cpp objekts/pen.h objekts/state.h GUI/centerWidget.cpp objekts/drawTools.h objekts/drawTools.cpp objekts/line.cpp objekts/line.h)
 target_link_libraries(run Qt5::Widgets Qt5::Core)

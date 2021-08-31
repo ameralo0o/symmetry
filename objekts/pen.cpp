@@ -16,9 +16,13 @@ void Pen::draw(QPainter & painter){
   }
 }
 
-void Pen::add(QPointF pointA, QPointF pointB) {
-  size_t index = vector.size() -1;
-  vector.push_back(std::make_tuple(pointA,pointB));
+void Pen::add(QPointF point) {
+  if(tmp_point.x() == -1){
+    tmp_point = point;
+    return;
+  }
+  vector.push_back(std::make_tuple(point,tmp_point));
+  tmp_point = point;
 }
 
 void Pen::clear(){

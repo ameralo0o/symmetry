@@ -9,6 +9,8 @@
 
 #include "state.h"
 #include "pen.h"
+#include "line.h"
+
 
 class DrawTools{
 private:
@@ -17,7 +19,7 @@ private:
 public:
     DrawTools();
     void setState(State* state);
-    void add(QPointF pointA, QPointF pointB);
+    void add(QPointF A);
     void draw(QPainter& painter);
     void clear() ;
     void pop() ;

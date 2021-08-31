@@ -6,13 +6,15 @@
 #include <iostream>
 
 DrawTools::DrawTools() {
-  this->state.reset(new Pen());
-  //this->drawVector.push_back(state);
+  //this->state.reset(new Pen());
+  this->state.reset(new Line());
+
 }
 
 
 void DrawTools::setState(State* state){
-  this->state.reset(new Pen());
+  //this->state.reset(new Pen());
+  this->state.reset(new Line());
 }
 
 
@@ -25,8 +27,8 @@ void DrawTools::draw(QPainter& painter){
 }
 
 
-void DrawTools::add(QPointF A, QPointF B){
-  state->add(A,B);
+void DrawTools::add(QPointF A){
+  state->add(A);
 }
 
 
@@ -44,5 +46,6 @@ void DrawTools::pop() {
 
 void DrawTools::newstep(){
   this->drawVector.push_back(state);
-  this->state.reset(new Pen());
+  //this->state.reset(new Pen());
+  this->state.reset(new Line());
 }

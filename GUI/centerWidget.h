@@ -36,7 +36,6 @@ public:
     int width;
     int height;
 
-    QPointF tmpPoint;
 
     std::shared_ptr<DrawTools> drawTool;
 
@@ -59,16 +58,14 @@ public:
 
 
     void mousePressEvent(QMouseEvent *e){
-      tmpPoint.setX(e->x());
-      tmpPoint.setY( e->y() );
+      this->drawTool->add(QPointF(e->x(),e->y()));
+
 
     }
     void mouseMoveEvent(QMouseEvent *e){
       int x = e->x();
       int y = e->y();
-      this->drawTool->add(QPointF(x, y), tmpPoint);
-      tmpPoint.setX(x);
-      tmpPoint.setY(y);
+      this->drawTool->add(QPointF(x, y));
       this->update();
     }
 
